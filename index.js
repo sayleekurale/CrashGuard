@@ -1,8 +1,10 @@
-import { registerRootComponent } from 'expo';
+// index.js — Root entry point
+// Background task MUST be registered here before anything else
 
-import App from './App';
+import { registerRootComponent } from "expo";
 
-// registerRootComponent calls AppRegistry.registerComponent('main', () => App);
-// It also ensures that whether you load the app in Expo Go or in a native build,
-// the environment is set up appropriately
+// Register background task at root level — required by expo-task-manager
+import "./services/BackgroundDetection";
+
+import App from "./App";
 registerRootComponent(App);

@@ -1,29 +1,90 @@
 {
   "expo": {
-    "name": "CrashGuard2",
-    "slug": "CrashGuard2",
+    "name": "CrashGuard",
+    "slug": "CrashGuard",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "newArchEnabled": true,
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": false,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#080810"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "CrashGuard records 10 seconds of audio at crash moment to help responders assess the scene.",
+        "NSLocationWhenInUseUsageDescription": "CrashGuard uses your location to send it to emergency responders when a crash is detected.",
+        "NSLocationAlwaysUsageDescription": "CrashGuard monitors your location in the background to respond to crashes even when the app is minimized."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#ef4444"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.sayleekurale.CrashGuard",
+      "permissions": [
+        "RECORD_AUDIO",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "VIBRATE",
+        "RECEIVE_BOOT_COMPLETED",
+        "POST_NOTIFICATIONS",
+        "CAMERA",
+        "FOREGROUND_SERVICE",
+        "FOREGROUND_SERVICE_LOCATION"
+      ],
+      "googleServicesFile": "./google-services.json",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDzmk9YR4OG8MvdAPw4rsSdsEzmYn0tUKQ"
+        }
+      },
+      "foregroundService": {
+      "notificationTitle": "CrashGuard Active",
+      "notificationBody": "Monitoring for crashes in background",
+      "notificationColor": "#ef4444"
+}
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+"plugins": [
+  [
+    "expo-location",
+    {
+      "locationAlwaysAndWhenInUsePermission": "CrashGuard needs location to detect crashes and alert responders.",
+      "isAndroidBackgroundLocationEnabled": true,
+      "isAndroidForegroundServiceEnabled": true
+    }
+  ],
+  "expo-font",
+  [
+    "expo-av",
+    {
+      "microphonePermission": "CrashGuard records crash scene audio."
+    }
+  ],
+  [
+    "expo-build-properties",
+    {
+      "android": {
+        "compileSdkVersion": 35,
+        "targetSdkVersion": 35,
+        "buildToolsVersion": "35.0.0"
+      }
+    }
+  ]
+],
+    "extra": {
+      "eas": {
+        "projectId": "6188ee7a-ae14-4428-b144-090650ad5afd"
+      }
     }
   }
 }
